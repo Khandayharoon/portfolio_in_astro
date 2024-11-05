@@ -8,7 +8,7 @@ function Navbar() {
     { label: "Projects", href: "/projects" },
     { label: "About Me", href: "/about" },
     { label: "Contacts", href: "/contact" },
-    { label: "Resume", href: "/resume" },
+    { label: "Resume", href: "/Haroon-Nissar-Khanday.pdf" },
   ];
 
   const toggleMenu = () => {
