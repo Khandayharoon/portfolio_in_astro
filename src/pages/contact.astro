@@ -1,0 +1,116 @@
+---
+export const prerender = false;
+import Layout from "@/layouts/Layout.astro";
+import Title from "../components/Title";
+---
+
+<Layout title="">
+    <div class="max-w-4xl mx-auto p-6">
+        <Title>Get in Touch</Title>
+
+        <p class="text-lg my-4">
+            If you have any questions, comments, or just want to say hi, feel
+            free to reach out!
+        </p>
+
+        <form class="space-y-4">
+            <div>
+                <label for="name" class="block text-lg mb-2">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="w-full p-2 border border-gray-300 rounded text-black"
+                />
+            </div>
+
+            <div>
+                <label for="email" class="block text-lg mb-2">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full p-2 border border-gray-300 rounded text-black"
+                />
+            </div>
+
+            <div>
+                <label for="message" class="block text-lg mb-2">Message</label>
+                <textarea
+                    id="message"
+                    name="msg"
+                    rows="4"
+                    required
+                    class="w-full p-2 border border-gray-300 rounded text-black"
+                ></textarea>
+            </div>
+
+            <button
+                type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center gap-1"
+                >Send Message</button
+            >
+        </form>
+
+        <div class="mt-8">
+            <h2 class="text-2xl font-semibold mb-2">Connect with Me</h2>
+            <p class="text-lg mb-2">
+                You can also reach out via my social media:
+            </p>
+            <ul class="space-y-2">
+                <li>
+                    <a
+                        href="mailto:your-email@example.com"
+                        class="hover:text-blue-500"
+                        >Email: your-email@example.com</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://github.com/yourusername"
+                        class="hover:text-blue-500">GitHub</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://www.linkedin.com/in/yourusername/"
+                        class="hover:text-blue-500">LinkedIn</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    import { actions } from "astro:actions";
+
+    const form = document.querySelector("form");
+    const submitButton = form?.querySelector(
+        'button[type="submit"]'
+    ) as HTMLButtonElement;
+    form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+        submitButton.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Submitting...
+      `;
+        const formData = new FormData(form);
+        const { data, error } = await actions.contact(formData);
+        if (!error) {
+            form.innerHTML = `<div class="text-green-100 bg-card border py-10 text-center flex  flex-col justify-center items-center gap-5">
+             <p class=" max-w-xl font-semibold text-center">
+  Thank you, i will get in touch with you as soon as possible
+</p>`;
+        }else{
+            console.log(error, data);
+            
+        }
+    });
+</script>

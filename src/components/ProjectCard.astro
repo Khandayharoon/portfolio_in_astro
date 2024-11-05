@@ -1,0 +1,99 @@
+---
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
+import { FaGithub, FaLink } from "react-icons/fa6";
+import { Button } from "./ui/button";
+const {
+    className,
+    name,
+    tags,
+    website,
+    github = "",
+    thumbnail,
+    date,
+    index,
+} = Astro.props;
+---
+
+<Card
+    className={cn(
+        "relative w-full   max-w-7xl mx-auto group overflow-hidden  bg-transparent justify-between hover:shadow-white duration-500",
+        className
+    )}
+>
+    {
+        index === 0 && (
+            <img
+                src={thumbnail}
+                alt=""
+                width={1000}
+                height={1000}
+                class="inset-0 object-contain -z-[2] group-hover:saturate-100 saturate-0 duration-500"
+            />
+        )
+    }
+    <div
+        class="absolute -z-[1] bg-gradient-to-t from-neutral-900/60 shadow-xl inset-0 via-black/70"
+    >
+    </div>
+    <div
+        class={cn("duration-300 flex flex-col justify-between", {
+            "h-full": index > 0,
+        })}
+    >
+        <CardHeader className="  py-1">
+            <CardTitle className="text-2xl pt-5">{name}</CardTitle>
+        </CardHeader>
+        <CardContent
+            className=" py-1 bg-transparent justify-between flex flex-col"
+        >
+            <>
+                <div class="flex gap-2 flex-wrap">
+                    {
+                        tags.map((tag: string) => (
+                            <div class="  p-1 px-2 border bg-background rounded-lg  gap-1 text-xs">
+                                {tag}
+                            </div>
+                        ))
+                    }
+                </div>
+            </>
+        </CardContent>
+        <CardFooter className="text-sm py-4 flex flex-col items-start gap-5">
+            <div class="flex">
+                <a
+                    href={website}
+                    target="_blank"
+                    class="flex items-center gap-1"
+                    rel="noopener noreferrer"
+                >
+                    <FaLink size={20} /> visit website
+                </a>
+                {
+                    github && (
+                        <a
+                            href={website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-1"
+                        >
+                            <FaGithub size={20} /> github
+                        </a>
+                    )
+                }
+            </div>
+            <a href={"/projects/" + name}>
+                <Button variant="secondary" size={"sm"} className=" py-0 gap-2">
+                    Learn more <ArrowRight size={18} />
+                </Button>
+            </a>
+        </CardFooter>
+    </div>
+</Card>

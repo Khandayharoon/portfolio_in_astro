@@ -1,0 +1,55 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import Title from "./Title";
+
+type Frontmatter = {
+    name: string;
+    tags: string[];
+    website: string;
+    github: string;
+    thumbnail: string;
+    date: string;
+};
+
+type Pack = {
+    frontmatter: Frontmatter;
+};
+
+// Import all projects
+const projects: Pack[] = Object.values(
+    await import.meta.glob<Pack>("../pages/projects/*.md", { eager: true })
+);
+
+// Define featured projects by name
+const featuredProjectNames = [
+    "Real Estate -  Kashmir Real Estate Website",
+    "Ahmed Adventures - Custom Kashmir Tour Booking Website",
+    "Rejouice - Dynamic and Multilingual Website",
+];
+
+// Filter featured projects
+const featuredProjects = projects.filter((project) =>
+    featuredProjectNames.includes(project.frontmatter.name)
+);
+---
+
+<div class="pb-10" id="projects">
+    <Title>Featured Projects</Title>
+    <div class="my-10 grid md:grid-cols-2 gap-5">
+        {
+            featuredProjects.map((project, i) => (
+                <ProjectCard
+                    index={i}
+                    className={i === 0 && "row-span-2"}
+                    name={project.frontmatter.name}
+                    tags={project.frontmatter.tags}
+                    website={project.frontmatter.website}
+                    github={project.frontmatter.github}
+                    thumbnail={project.frontmatter.thumbnail}
+                    date={project.frontmatter.date}
+                />
+            ))
+        }
+    </div>
+    <a href="/projects"> more projects... </a>
+</div>

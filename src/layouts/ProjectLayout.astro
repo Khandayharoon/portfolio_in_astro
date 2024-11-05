@@ -1,0 +1,60 @@
+---
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Wrapper from "../components/Wrapper.astro";
+import "../styles/retro.css";
+import Layout from "./Layout.astro";
+
+import { FaExternalLinkAlt } from "react-icons/fa";
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.name}>
+    <Wrapper className="max-w-4xl border md:p-5 mt-10 ">
+        <div class="px-4 mt-10">
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbLink href="/projects"
+                            >Projects</BreadcrumbLink
+                        >
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                </BreadcrumbList>
+            </Breadcrumb>
+
+            <h1 class="text-3xl sm:text-5xl font-bold text-primary mt-7 mb-5">
+                {frontmatter.name}
+            </h1>
+            <a
+                href={frontmatter.website}
+                target="_blank"
+                class="my-3 flex underline items-center gap-2"
+            >
+                <FaExternalLinkAlt /> Visit Website
+            </a>
+            <div class="flex gap-2 flex-wrap pb-5">
+                {
+                    frontmatter.tags.map((tag: string) => (
+                        <div class="  p-1 px-2 border bg-background rounded-lg  gap-1 text-xs w-fit">
+                            {tag}
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div class="project">
+                <slot />
+            </div>
+        </div>
+    </Wrapper>
+</Layout>

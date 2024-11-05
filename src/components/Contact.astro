@@ -1,0 +1,64 @@
+---
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+
+import { Github, Linkedin, Mail } from "lucide-react";
+---
+
+<div>
+    <Card className="mx-0" id="contact">
+        <CardHeader>
+            <CardTitle className="text-3xl uppercase">Socials</CardTitle>
+            <CardDescription className="text-muted-foreground">
+                Feel free to reach out via the links below!
+            </CardDescription>
+        </CardHeader>
+        <CardContent>
+            <div class="flex gap-4 w-full flex-wrap">
+                <a class="block w-fit" href="mailto:khandayharoon.com">
+                    <Button
+                        size={"lg"}
+                        variant={"outline"}
+                        className="text-xl px-5 py-6"
+                    >
+                        <Mail /> MAIL
+                    </Button>
+                </a>
+                <a
+                    class="block w-fit"
+                    href="https://github.com/Khandayharoon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Button
+                        size={"lg"}
+                        variant={"outline"}
+                        className="text-xl px-5 py-6"
+                    >
+                        <Github /> Github
+                    </Button>
+                </a>
+                <a
+                    class="block w-fit"
+                    href="https://www.linkedin.com/in/haroon-nissar-4870a6284/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Button
+                        size={"lg"}
+                        variant={"outline"}
+                        className="text-xl px-5 py-6"
+                    >
+                        <Linkedin /> Linkedin
+                    </Button>
+                </a>
+            </div>
+        </CardContent>
+    </Card>
+</div>

@@ -4,10 +4,15 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import '@/styles/globals.css'
+import MouseTail from '../components/MouseTail'
+import Navbar from '@/components/Navbar';
+import Wrapper from '../components/Wrapper.astro'
+import Footer from '@/components/Footer.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -16,35 +21,12 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="dark">
+		<MouseTail client:load color="green"/> 
+		<Wrapper>
+			<Navbar client:load/>
+			<slot/>
+			<Footer/>
+		</Wrapper>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

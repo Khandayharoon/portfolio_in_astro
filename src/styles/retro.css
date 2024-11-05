@@ -1,0 +1,144 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
+
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  .project html {
+    font-size: 14px !important; /* Smaller base font size */
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .project html {
+    font-size: 15px; /* Smaller base font size */
+  }
+}
+
+.project {
+  @apply text-muted-foreground;
+  line-height: 1.85;
+  font-family: "monospace";
+  margin: 0;
+  max-width: 100%;
+}
+
+.project .splendor-p,
+.project p {
+  font-size: 0.9rem; /* Slightly smaller paragraph font size */
+  margin-bottom: 1.3rem;
+  letter-spacing: 0.5px; /* Add slight spacing between letters */
+}
+
+.project .splendor-h1,
+.project h1 {
+  @apply text-3xl;
+  margin-top: 0;
+  color: #f2fff0; /* Full white for bold text */
+}
+
+.project .splendor-h2,
+.project h2 {
+  @apply text-3xl md:text-4xl;
+  color: #f2fff0; /* Full white for bold text */
+  margin-top: 3rem !important;
+  font-weight: bold;
+  margin-bottom: 1rem !important;
+}
+
+.project .splendor-h3,
+.project h3 {
+  font-size: 1.8rem; /* Smaller heading size */
+  color: #f2fff0; /* Full white for bold text */
+}
+
+.project .splendor-h4,
+.project h4 {
+  font-size: 1.4rem; /* Smaller heading size */
+  color: #f2fff0; /* Full white for bold text */
+}
+
+.project .splendor-h5,
+.project h5 {
+  font-size: 1.1rem; /* Smaller heading size */
+  color: #f2fff0; /* Full white for bold text */
+}
+
+.project strong,
+.project .splendor-h6,
+.project h6 {
+  font-size: 0.9rem; /* Smaller heading size */
+  color: #f2fff0; /* Full white for bold text */
+}
+
+.project .splendor-small,
+.project small {
+  font-size: 0.707em;
+}
+
+.project canvas,
+.project iframe,
+.project img,
+.project select,
+.project svg,
+.project textarea,
+.project video {
+  max-width: 100%;
+}
+
+.project iframe {
+  @apply w-full aspect-video;
+}
+.project
+  .package
+  :not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p),
+.project p {
+  margin: 1rem auto;
+  padding: 0.25rem;
+}
+
+.project div,
+.project div img {
+  width: 100%;
+}
+
+.project blockquote p {
+  /* If you're using Tailwind CSS, ensure the classes apply correctly */
+  @apply text-lg;
+  font-style: italic;
+  margin: 1rem auto;
+}
+
+.project h1 {
+  padding: 4rem 0 !important;
+}
+
+.project p {
+  height: auto;
+  line-height: 1.65;
+}
+
+.project code,
+.project pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+.project pre {
+  background-color: #333; /* Darker background for code blocks */
+  color: #fafafa; /* Light text color for code blocks */
+  font-size: 0.8rem;
+  overflow-x: scroll;
+  padding: 1.125em;
+}
+
+.project ul > li > ul > li {
+  margin-left: 2rem;
+  list-style: circle !important;
+}
+
+.project ul > li {
+  padding-bottom: 1rem;
+  list-style-type: circle;
+}
+
+.project blockquote {
+  border-left: 3px solid #01ff70 !important; /* Optional: Add a color to blockquote for contrast */
+  padding-left: 1rem;
+}

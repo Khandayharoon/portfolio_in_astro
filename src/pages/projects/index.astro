@@ -1,0 +1,47 @@
+---
+import ProjectCard from "@/components/ProjectCard.astro";
+import Title from "@/components/Title";
+import Wrapper from "@/components/Wrapper.astro";
+import Layout from "@/layouts/Layout.astro";
+
+type Frontmatter = {
+    name: string;
+    tags: string[];
+    website: string;
+    github: string;
+    thumbnail: string;
+    date: string;
+};
+
+type Pack = {
+    frontmatter: Frontmatter;
+};
+
+const projects: Pack[] = Object.values(
+    await import.meta.glob<Pack>("../projects/*.md", { eager: true })
+);
+---
+
+<Layout title="">
+    <div class="my-20">
+        <Wrapper>
+            <Title> My Projects </Title>
+            <div class="grid px-5 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5">
+                {
+                    projects.map((project) => (
+                        <ProjectCard
+                            index={0}
+                            className=""
+                            name={project.frontmatter.name}
+                            tags={project.frontmatter.tags}
+                            website={project.frontmatter.website}
+                            github={project.frontmatter.github}
+                            thumbnail={project.frontmatter.thumbnail}
+                            date={project.frontmatter.date}
+                        />
+                    ))
+                }
+            </div>
+        </Wrapper>
+    </div>
+</Layout>
