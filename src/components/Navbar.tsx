@@ -48,13 +48,13 @@ function Navbar() {
 
       {/* Dropdown menu for smaller screens */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-red-800 p-4 shadow-lg z-20 md:hidden">
+        <div className="absolute top-20 right-10 w-ful p-4 shadow-lg z-20 md:hidden bg-zinc-900">
           <ul className="flex flex-col gap-4">
             {navItems.map((item, key) => (
               <li key={key}>
                 <a
                   href={item.href}
-                  className="hover:text-green-800 sm:text-sm md:text-md"
+                  className="hover:text-green-800 sm:text-sm md:text-md text-white"
                 >
                   {item.label}
                 </a>
