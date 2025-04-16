@@ -2,14 +2,13 @@
 import { defineConfig } from "astro/config";
 
 import tailwind from "@astrojs/tailwind";
-
 import react from "@astrojs/react";
-
-import vercel from "@astrojs/vercel/serverless";
+// @ts-ignore
+import cloudflare from "@astrojs/cloudflare"; // ✅ Correct import
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false }), react()],
-  output: "hybrid",
-  adapter: vercel(),
+  output: "server",
+  adapter: cloudflare(), // ✅ Use the correct adapter
 });
